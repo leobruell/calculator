@@ -1,0 +1,38 @@
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.calculator{
+    display: flex;
+    flex-direction: row;
+    height: 50%;
+    width: 30%;
+}
+
+.number-buttons{
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    height: 70%;
+    width: 60%;
+}
+
+.num-but{
+    height: 25%;
+    width: 33%;
+    aspect-ratio: 1.5 / 1;
+}
+
+.operator-buttons{
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    width: 30%;
+}
+
+.operator{
+    height: 25%;
+    width: 70%;
+}
