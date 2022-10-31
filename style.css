@@ -1,6 +1,7 @@
 body{
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 100vh;
 }
 
@@ -8,7 +9,21 @@ body{
     display: flex;
     flex-direction: row;
     height: 50%;
-    width: 30%;
+    width: 25%;
+}
+
+.output-bar{
+    width: 24.5%;
+    height: 8%;
+    border-style: solid;
+    border-color: grey;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+.the-output{
+    font-size: 1.5vw;
 }
 
 .number-buttons{
@@ -16,7 +31,7 @@ body{
     flex-direction: row-reverse;
     flex-wrap: wrap;
     height: 70%;
-    width: 60%;
+    width: 70%;
 }
 
 .num-but{
@@ -34,5 +49,5 @@ body{
 
 .operator{
     height: 25%;
-    width: 70%;
+    width: 100%;
 }
