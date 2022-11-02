@@ -28,7 +28,6 @@ let operate = function(a, anOperator, b){
 //Adding the number buttons
 
 let numberDiv = document.querySelector('.number-buttons')
-console.log(numberDiv)
 for (let i = 0; i < 9; i++){
     newButton = document.createElement('button')
     newButton.classList.add('num-but')
@@ -37,17 +36,52 @@ for (let i = 0; i < 9; i++){
 
 }
 
-let myEquals = document.createElement('button')
-myEquals.classList.add('num-but')
-myEquals.textContent = '='
-numberDiv.appendChild(myEquals)
+let myExp = document.createElement('button')
+myExp.classList.add('num-but')
+myExp.textContent = ' exp '
+numberDiv.appendChild(myExp)
 
 let myPeriod = document.createElement('button')
-myPeriod.classList.add('num-but')
+myPeriod.classList.add('period')
 myPeriod.textContent = '.'
 numberDiv.appendChild(myPeriod)
 
 let myZero = document.createElement('button')
 myZero.classList.add('num-but')
-myZero.textContent = 0
+myZero.textContent = '0'
 numberDiv.appendChild(myZero)
+
+let outputBar = document.querySelector('.output-bar')
+
+let onClick = function(event){
+    buttonText = event.target.textContent
+    outputBar.textContent += buttonText
+    outputBar.setAttribute('style', 'font-size: 2vw')
+}
+
+let onOpClick = function(event){
+    buttonText = event.target.textContent
+    outputBar.textContent += buttonText
+    outputBar.setAttribute('style', 'font-size: 2vw')
+    myPeriod.addEventListener('click', onPeriodClick)
+}
+
+let onPeriodClick = function(event){
+    let newOutput =   outputBar.textContent.trim()
+    newOutput += '.'
+    outputBar.textContent = newOutput
+    myPeriod.removeEventListener('click', onPeriodClick)
+}
+
+let allNums = document.querySelectorAll('.num-but')
+Array.from(allNums).forEach(numBut => {
+    numBut.addEventListener('click', onClick)
+})
+
+let allOps = document.querySelectorAll('.operator')
+Array.from(allOps).forEach(opBut => {
+    opBut.addEventListener('click', onOpClick)
+})
+
+
+myPeriod.addEventListener('click', onPeriodClick)

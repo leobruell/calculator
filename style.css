@@ -21,10 +21,9 @@ body{
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
+    align-items: center;
 }
-.the-output{
-    font-size: 1.5vw;
-}
+
 
 .number-buttons{
     display: flex;
@@ -40,6 +39,12 @@ body{
     aspect-ratio: 1.5 / 1;
 }
 
+.period{
+    height: 25%;
+    width: 33%;
+    aspect-ratio: 1.5 / 1;
+}
+
 .operator-buttons{
     display: flex;
     flex-direction: column;
@@ -50,4 +55,8 @@ body{
 .operator{
     height: 25%;
     width: 100%;
+}
+
+.header{
+    font-size: 1.5vw;
 }
