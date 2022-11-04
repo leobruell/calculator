@@ -127,3 +127,24 @@ let onEquals = function(event){
 
 myEquals = document.querySelector('.equal')
 myEquals.addEventListener('click', onEquals)
+
+myClear.addEventListener('click', event =>{
+    outputBar.textContent = ''
+})
+
+myBackspace.addEventListener('click', event =>{
+    if (['+','-','x','÷'].includes(outputBar.textContent.charAt(outputBar.textContent.length-2))){
+        outputBar.textContent = outputBar.textContent.slice(0, -3)
+        Array.from(allOps).forEach(opBut => {
+            opBut.addEventListener('click', onOpClick)
+        })
+    }
+    else{
+        outputBar.textContent = outputBar.textContent.slice(0,-1)
+        if (['+','-','x','÷'].includes(outputBar.textContent.charAt(outputBar.textContent.length -2))){
+            Array.from(allOps).forEach(opBut => {
+                opBut.removeEventListener('click', onOpClick)
+            })
+        }
+    }
+})
