@@ -63,14 +63,18 @@ myClear.classList.add('clearer')
 myClear.textContent = 'clear'
 numberDiv.appendChild(myClear)
 
-//
+//Adding event listeners to make the calculator work:
 
 let outputBar = document.querySelector('.output-bar')
+let allOps = document.querySelectorAll('.operator')
 
 let onClick = function(event){
     buttonText = event.target.textContent
     outputBar.textContent += buttonText
     outputBar.setAttribute('style', 'font-size: 2vw')
+    Array.from(allOps).forEach(opBut => {
+        opBut.addEventListener('click', onOpClick)
+    })
 }
 
 let onOpClick = function(event){
@@ -78,6 +82,9 @@ let onOpClick = function(event){
     outputBar.textContent += buttonText
     outputBar.setAttribute('style', 'font-size: 2vw')
     myPeriod.addEventListener('click', onPeriodClick)
+    Array.from(allOps).forEach(opBut => {
+        opBut.removeEventListener('click', onOpClick)
+    })
 }
 
 let onPeriodClick = function(event){
@@ -92,10 +99,7 @@ Array.from(allNums).forEach(numBut => {
     numBut.addEventListener('click', onClick)
 })
 
-let allOps = document.querySelectorAll('.operator')
-Array.from(allOps).forEach(opBut => {
-    opBut.addEventListener('click', onOpClick)
-})
+
 
 
 myPeriod.addEventListener('click', onPeriodClick)
@@ -112,7 +116,7 @@ let onEquals = function(event){
     }
     else if (numberList.length > 3){
 
-        outputBar.textContent = operate(...numberList.slice(0,3)) + ' ' + numberList.slice(3).toString()
+        outputBar.textContent = operate(...numberList.slice(0,3)) + ' ' + numberList.slice(3).toString() + ' '
         console.log(outputBar.textContent)
         onEquals(event)
     }
