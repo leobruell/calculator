@@ -5,23 +5,45 @@ body{
     height: 100vh;
 }
 
+.full-calculator{
+    height: 50%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: grey;
+    padding: 1%;
+    border-radius: 5px;
+}
+
+.divider{
+    width: 100%;
+    height: 10%;
+}
+
 .calculator{
     display: flex;
     flex-direction: row;
-    height: 50%;
-    width: 25%;
+    height: 70%;
+    width: 100%;
+    border-style: solid;
+    border-color: grey;
+    border-radius: 5px;
+    background-color: rgb(173, 166, 166);
 }
 
 .output-bar{
-    width: 24.5%;
-    height: 8%;
+    width: 100%;
+    height: 22%;
     border-style: solid;
     border-color: grey;
+    background-color: white;
     border-radius: 5px;
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
+    margin: 1%;
 }
 
 
@@ -29,34 +51,54 @@ body{
     display: flex;
     flex-direction: row-reverse;
     flex-wrap: wrap;
-    height: 70%;
+    height: 100%;
     width: 70%;
 }
 
 .num-but{
-    height: 25%;
-    width: 33%;
+    height: 20%;
+    width: 33.33%;
     aspect-ratio: 1.5 / 1;
 }
 
 .period{
-    height: 25%;
-    width: 33%;
+    height: 20%;
+    width: 33.333%;
     aspect-ratio: 1.5 / 1;
 }
 
 .operator-buttons{
     display: flex;
     flex-direction: column;
-    height: 70%;
+    height: 100%;
     width: 30%;
 }
 
 .operator{
-    height: 25%;
+    height: 20%;
     width: 100%;
 }
 
 .header{
     font-size: 1.5vw;
 }
+
+.equal{
+    height: 20%;
+    width: 100%;
+    background-color: blue;
+}
+
+.backspace{
+    height: 20%;
+    width: 50%;
+    aspect-ratio: 1.5 / 1;
+}
+
+.clearer{
+    height: 20%;
+    width: 50%;
+    aspect-ratio: 1.5 / 1;
+}
+
+

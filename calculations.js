@@ -1,6 +1,6 @@
 // Creating the initial math functions for our calculator: 
 let add = function(a, b) {
-    return a + b
+    return Number(a) + Number(b)
 }
 
 let subtract = function(a, b){
@@ -20,8 +20,8 @@ let multiply = function(a, b){
 let operate = function(a, anOperator, b){
     if (anOperator == '+'){return add(a,b)}
     else if (anOperator == '-'){return subtract(a,b)}
-    else if (anOperator == '*'){return multiply(a,b)}
-    else if (anOperator == '/'){return divide(a, b)}
+    else if (anOperator == 'x'){return multiply(a,b)}
+    else if (anOperator == '÷'){return divide(a, b)}
     else {return 'ERROR!!!!!!!'}
 }
 
@@ -35,6 +35,8 @@ for (let i = 0; i < 9; i++){
     numberDiv.appendChild(newButton)
 
 }
+
+//Adding some more buttons:
 
 let myExp = document.createElement('button')
 myExp.classList.add('num-but')
@@ -50,6 +52,18 @@ let myZero = document.createElement('button')
 myZero.classList.add('num-but')
 myZero.textContent = '0'
 numberDiv.appendChild(myZero)
+
+let myBackspace = document.createElement('button')
+myBackspace.classList.add('backspace')
+myBackspace.textContent = 'backspace'
+numberDiv.appendChild(myBackspace)
+
+let myClear = document.createElement('button')
+myClear.classList.add('clearer')
+myClear.textContent = 'clear'
+numberDiv.appendChild(myClear)
+
+//
 
 let outputBar = document.querySelector('.output-bar')
 
@@ -85,3 +99,27 @@ Array.from(allOps).forEach(opBut => {
 
 
 myPeriod.addEventListener('click', onPeriodClick)
+
+let onEquals = function(event){
+    let numberString = outputBar.textContent
+    numberString = numberString.trim()
+    numberString = numberString.replaceAll(',',' ')
+    let numberList = numberString.split(' ')
+    console.log(numberList)
+    if (numberList.length == 3){
+        outputBar.textContent = operate(...numberList)
+        return
+    }
+    else if (numberList.length > 3){
+
+        outputBar.textContent = operate(...numberList.slice(0,3)) + ' ' + numberList.slice(3).toString()
+        console.log(outputBar.textContent)
+        onEquals(event)
+    }
+    else{
+        return 
+    }
+}
+
+myEquals = document.querySelector('.equal')
+myEquals.addEventListener('click', onEquals)
