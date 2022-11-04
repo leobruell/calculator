@@ -95,17 +95,18 @@ let onOpClick = function(event){
 }
 
 let onPeriodClick = function(event){
-    let newOutput =   outputBar.textContent.trim()
-    newOutput += '.'
+    let newOutput = outputBar.textContent.trim()
+    if (['+','-','x','÷'].includes(newOutput.charAt(newOutput.length-1)) || ['p'].includes(newOutput.charAt(newOutput.length-1))){
+        newOutput += ' .'
+    }
+    else {newOutput += '.'}
     outputBar.textContent = newOutput
     myPeriod.removeEventListener('click', onPeriodClick)
 }
 
 let allNums = document.querySelectorAll('.num-but')
-console.log(allNums)
 allNumsArray = Array.from(allNums)
 allNumsArray.splice(9,1)
-console.log(allNumsArray)
 allNumsArray.forEach(numBut => {
     numBut.addEventListener('click', onClick)
 })
@@ -120,7 +121,6 @@ let onEquals = function(event){
     numberString = numberString.trim()
     numberString = numberString.replaceAll(',',' ')
     let numberList = numberString.split(' ')
-    console.log(numberList)
     if (numberList.length == 3){
         outputBar.textContent = operate(...numberList)
         return
@@ -128,7 +128,6 @@ let onEquals = function(event){
     else if (numberList.length > 3){
 
         outputBar.textContent = operate(...numberList.slice(0,3)) + ' ' + numberList.slice(3).toString() + ' '
-        console.log(outputBar.textContent)
         onEquals(event)
     }
     else{
@@ -150,8 +149,15 @@ myBackspace.addEventListener('click', event =>{
         Array.from(allOps).forEach(opBut => {
             opBut.addEventListener('click', onOpClick)
         })
+        
     }
-    else{
+    else if (['p'].includes(outputBar.textContent.charAt(outputBar.textContent.length-2))){
+        outputBar.textContent = outputBar.textContent.slice(0, -5)
+        Array.from(allOps).forEach(opBut => {
+            opBut.addEventListener('click', onOpClick)
+        })
+    }
+    else {
         outputBar.textContent = outputBar.textContent.slice(0,-1)
         if (['+','-','x','÷'].includes(outputBar.textContent.charAt(outputBar.textContent.length -2))){
             Array.from(allOps).forEach(opBut => {
@@ -159,6 +165,8 @@ myBackspace.addEventListener('click', event =>{
             })
         }
     }
+    if (outputBar.textContent.includes('.') == false){
+        myPeriod.addEventListener('click', onPeriodClick)
+    }
 })
 
-//TO DO: make stuff ROUND and make EXP work
