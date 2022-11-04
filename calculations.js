@@ -1,20 +1,23 @@
 // Creating the initial math functions for our calculator: 
 let add = function(a, b) {
-    return Number(a) + Number(b)
+    return Math.round((Number(a) + Number(b)) * 100) /100
 }
 
 let subtract = function(a, b){
-    return a - b
+    return Math.round((a - b) *100) /100
 }
 
 let divide = function(a, b){
-    return a / b
+    return Math.round(a / b * 100) /100
 }
 
 let multiply = function(a, b){
-    return a * b
+    return Math.round(a * b*100) /100
 }
 
+let power = function(a, b){
+    return Math.round((a ** b)*100) /100
+}
 // Defining an operator function:
 
 let operate = function(a, anOperator, b){
@@ -22,6 +25,7 @@ let operate = function(a, anOperator, b){
     else if (anOperator == '-'){return subtract(a,b)}
     else if (anOperator == 'x'){return multiply(a,b)}
     else if (anOperator == '÷'){return divide(a, b)}
+    else if (anOperator == 'exp'){return power(a, b)}
     else {return 'ERROR!!!!!!!'}
 }
 
@@ -40,6 +44,7 @@ for (let i = 0; i < 9; i++){
 
 let myExp = document.createElement('button')
 myExp.classList.add('num-but')
+myExp.classList.add('power')
 myExp.textContent = ' exp '
 numberDiv.appendChild(myExp)
 
@@ -66,7 +71,9 @@ numberDiv.appendChild(myClear)
 //Adding event listeners to make the calculator work:
 
 let outputBar = document.querySelector('.output-bar')
-let allOps = document.querySelectorAll('.operator')
+let allOps = Array.from(document.querySelectorAll('.operator'))
+myExp = document.querySelector('.power')
+allOps.push(myExp)
 
 let onClick = function(event){
     buttonText = event.target.textContent
@@ -95,7 +102,11 @@ let onPeriodClick = function(event){
 }
 
 let allNums = document.querySelectorAll('.num-but')
-Array.from(allNums).forEach(numBut => {
+console.log(allNums)
+allNumsArray = Array.from(allNums)
+allNumsArray.splice(9,1)
+console.log(allNumsArray)
+allNumsArray.forEach(numBut => {
     numBut.addEventListener('click', onClick)
 })
 
@@ -130,6 +141,7 @@ myEquals.addEventListener('click', onEquals)
 
 myClear.addEventListener('click', event =>{
     outputBar.textContent = ''
+    myPeriod.addEventListener('click', onPeriodClick)
 })
 
 myBackspace.addEventListener('click', event =>{
@@ -148,3 +160,5 @@ myBackspace.addEventListener('click', event =>{
         }
     }
 })
+
+//TO DO: make stuff ROUND and make EXP work
